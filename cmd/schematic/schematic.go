@@ -5,13 +5,12 @@
 //
 // Run it against your schema:
 //
-//     $ schematic platform-api.json > heroku/heroku.go
+//	$ schematic platform-api.json > heroku/heroku.go
 //
 // This will generate a Go package named after your schema:
 //
-//     package heroku
-//     ...
-//
+//	package heroku
+//	...
 package main
 
 import (
@@ -28,12 +27,6 @@ import (
 var output = flag.String("o", "", "Output file")
 
 func main() {
-	defer func() {
-		if r := recover(); r != nil {
-			log.Fatal(r)
-		}
-	}()
-
 	log.SetFlags(0)
 	log.SetPrefix("schematic: ")
 

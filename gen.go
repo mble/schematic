@@ -105,7 +105,13 @@ func (s *Schema) Resolve(r *Schema, rs ResolvedSet) *Schema {
 		} else if len(s.OneOf) > 0 {
 			s = s.OneOf[0].Ref.Resolve(r)
 		} else if len(s.AnyOf) > 0 {
-			s = s.AnyOf[0].Ref.Resolve(r)
+			maybe_anyof := s.AnyOf
+			if len(maybe_anyof) > 0 {
+				if maybe_anyof[0].Ref != nil {
+					s = maybe_anyof[0].Ref.Resolve(r)
+				}
+			}
+			break
 		} else {
 			break
 		}
